@@ -5,11 +5,12 @@ $username = "root";
 $password = "";
 $database = "optiflow";
 
-$conn = new mysql($servername,$username,$password,$database);
+// Create connection
+$conn = new mysqli($servername, $username, $password, $database);
 
 // Check connection
-if (!$conn->connect_error){
-    die("Connection Fail" . $conn->connect_error);  
+if ($conn->connect_error) {
+    die("Connection Failed: " . $conn->connect_error);  
 } 
 
 ?>

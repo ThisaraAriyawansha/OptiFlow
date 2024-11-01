@@ -4,16 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Interface</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+            
+
 </head>
 <body>
+
     <div class="dashboard-container">
         <header class="dashboard-header">
             <h1>Dashboard</h1>
+            <p id="welcome-message"></p>
             <div class="user-info">
-                <span>Welcome, User!</span>
-                <i class="fas fa-user-circle"></i>
+            <script>
+        const userName = localStorage.getItem('userName');
+
+        const welcomeMessage = document.getElementById('welcome-message');
+        if (userName) {
+            welcomeMessage.innerText = `Hello, ${userName}!`;
+        } else {
+            welcomeMessage.innerText = 'Hello, Guest!';
+        }
+
+    </script>
+
             </div>
         </header>
 
