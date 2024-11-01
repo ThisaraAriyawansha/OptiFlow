@@ -1,0 +1,112 @@
+/* Universal box-sizing for consistent padding and border behavior */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Times New Roman', Arial, sans-serif; /* Changed to Times New Roman */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    background-image: url('https://cdn.pixabay.com/photo/2016/03/22/15/31/background-image-1273097_1280.jpg'); /* Add your background image here */
+    background-size: cover; /* Cover the entire viewport */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased; /* Smoother text rendering for WebKit */
+}
+
+/* Navbar styling */
+.navbar {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: #fff;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.navbar .company-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #f0f8ff;
+    white-space: nowrap;
+}
+
+/* Login button styling */
+.navbar .login-button {
+    font-family: 'Times New Roman', Arial, sans-serif; /* Changed to Times New Roman */
+    background: linear-gradient(135deg, #007BFF, #0056b3); /* Gradient from blue to dark blue */
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    font-size: 1rem;
+    text-decoration: none;
+}
+
+.navbar .login-button:hover {
+    background: linear-gradient(135deg, #0056b3, #004494); /* Darker gradient on hover */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Content styling */
+.content {
+    margin-top: 8rem;
+    text-align: center;
+    padding: 2rem;
+    max-width: 90%;
+    animation: fadeIn 1s ease;
+    -webkit-animation: fadeIn 1s ease; /* Safari */
+}
+
+.content h1 {
+    color: white;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.content p {
+    color: white;
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: auto;
+    line-height: 1.5;
+}
+
+/* Fade-in animation for content */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@-webkit-keyframes fadeIn {
+    from {
+        opacity: 0;
+        -webkit-transform: translateY(20px); /* WebKit version */
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+    }
+}
