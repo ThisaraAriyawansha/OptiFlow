@@ -21,7 +21,7 @@ body {
 
 /* Navbar styling */
 .navbar {
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    background: transparent; /* Adjusted for transparency */
     color: #fff;
     padding: 1rem 2rem;
     display: flex;
@@ -29,7 +29,6 @@ body {
     align-items: center;
     width: 100%;
     max-width: 100%;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     position: fixed;
     top: 0;
     left: 0;

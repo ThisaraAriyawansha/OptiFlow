@@ -1,3 +1,10 @@
+
+
+body {
+    font-family: 'Times New Roman', Arial, sans-serif; 
+
+}
+
 .WebAdminContent {
     height: 100vh;
     display: flex;
@@ -169,43 +176,29 @@ input:focus {
         transform: scale(1);
     }
 }
-
 .WebAdminlogin-button {
-    background: linear-gradient(45deg, #1c1f4a, #00509e);
+    font-family: 'Times New Roman', Arial, sans-serif; 
+    background: linear-gradient(45deg, #262a59, #095fb5);
     color: white;
     padding: 12px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    transition: background 0.3s ease, transform 0.3s ease;
+    transition: background 0.3s ease, transform 0.3s ease; 
     position: relative;
     animation: pulse 1s infinite;
+    margin: 20px auto; 
+    display: block; 
+    width: 80%; 
+    max-width: 400px; 
 }
 
 .WebAdminlogin-button:hover {
     background: linear-gradient(45deg, #003f88, #001f55);
     box-shadow: 0 8px 20px rgba(0, 106, 230, 0.4);
-    transform: translateY(-3px);
-    animation: shake 0.3s;
-}
-
-@keyframes shake {
-    0% {
-        transform: translateX(0);
-    }
-    25% {
-        transform: translateX(-5px);
-    }
-    50% {
-        transform: translateX(5px);
-    }
-    75% {
-        transform: translateX(-5px);
-    }
-    100% {
-        transform: translateX(0);
-    }
+    transform: scale(1.05); 
+    transition: background 0.3s ease, transform 0.3s ease; 
 }
 
 .WebAdminlogin-button:active {
@@ -216,6 +209,7 @@ input:focus {
     outline: none;
     box-shadow: 0 0 10px rgba(0, 122, 255, 0.5);
 }
+
 
 .alert-box {
     background-color: #f8d7da;
