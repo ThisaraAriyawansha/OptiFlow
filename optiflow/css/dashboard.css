@@ -3,12 +3,11 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
+    font-family: Arial, sans-serif;
 }
 
 /* General Layout */
 body {
-    padding-top: 60px; /* Adjust this value based on header height */
     background-color: #f5f5f5;
     color: #333;
 }
@@ -26,14 +25,10 @@ body {
     background-color: #003366;
     color: #fff;
     padding: 1rem 2rem;
-    position: fixed;
-    top:0;
-    width: 100%; 
-    z-index: 1000;
 }
 
 .dashboard-header h1 {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
 }
 
 #welcome-message {
@@ -43,9 +38,8 @@ body {
 
 /* Sidebar */
 .sidebar {
-    height: 100%;
     background-color: #33475b;
-    width: 220px;
+    width: 200px;
     min-height: 100vh;
     padding-top: 2rem;
     position: fixed;
@@ -66,17 +60,11 @@ body {
     padding: 1rem;
     display: flex;
     align-items: center;
-    border-radius: 4px;
-    transition: background 0.3s, color 0.3s;
+    transition: background 0.3s;
 }
 
 .sidebar a:hover {
     background-color: #446680;
-    color: #fff;
-}
-
-.sidebar a.active-tab {
-    background-color: #00509e;
     color: #fff;
 }
 
@@ -86,7 +74,7 @@ body {
 
 /* Main Content */
 .main-content {
-    margin-left: 240px;
+    margin-left: 220px;
     padding: 2rem;
     flex-grow: 1;
 }
@@ -121,11 +109,6 @@ input, select, button {
     border-radius: 4px;
     font-size: 0.9rem;
     width: 100%;
-}
-
-input:focus, select:focus {
-    border-color: #00509e;
-    outline: none;
 }
 
 button {

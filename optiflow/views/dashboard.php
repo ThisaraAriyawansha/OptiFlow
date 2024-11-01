@@ -21,7 +21,7 @@
         <aside class="sidebar">
     <ul>
         <li><a href="#" id="dashboard-link" onclick="showSection('dashboard-section')"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-        <li><a href="#" id="customer-link" onclick="showSection('customer-section')"><i class="fas fa-user"></i> Customers</a></li>
+        <li><a href="#" id="customer-link" onclick="showSection('customer-section')"><i class="fas fa-user"></i> Customers Registration</a></li>
         <li><a href="#" id="item-link" onclick="showSection('item-section')"><i class="fas fa-box"></i> Items</a></li>
         <li><a href="#" id="report-link" onclick="showSection('report-section')"><i class="fas fa-file-alt"></i> Reports</a></li>
     </ul>
@@ -32,31 +32,57 @@
         <h2>Dashboard Overview</h2>
         <p>Welcome to the OptiFlow Dashboard. Here you can manage your operations efficiently.</p>
     </div>
+
     <div id="customer-section" class="section-content" style="display: none;">
-        <h2>Register Customer</h2>
-        <form id="customerForm">
-            <label>Title:</label>
-            <select required>
-                <option>Mr</option>
-                <option>Mrs</option>
-                <option>Miss</option>
-                <option>Dr</option>
-            </select>
-            <label>First Name:</label>
-            <input type="text" required>
-            <label>Last Name:</label>
-            <input type="text" required>
-            <label>Contact Number:</label>
-            <input type="tel" pattern="[0-9]{10}" required>
-            <label>District:</label>
-            <input type="text" required>
-            <button type="submit">Register Customer</button>
-        </form>
-        <div id="customerList">
-            <h3>Customer List</h3>
-            <!-- Table for viewing registered customers -->
-        </div>
-    </div>
+    <h2>Register Customer</h2>
+    <form id="customerForm" method="post" action="">
+        <label>Title:</label>
+        <select id="title" required>
+            <option>Mr</option>
+            <option>Mrs</option>
+            <option>Miss</option>
+            <option>Dr</option>
+        </select>
+        <label>First Name:</label>
+        <input type="text" id="firstName" required>
+        <label>Last Name:</label>
+        <input type="text" id="lastName" required>
+        <label>Contact Number:</label>
+        <input type="tel" id="contactNumber" pattern="[0-9]{10}" required>
+        <label>District:</label>
+        <select id="district" required>
+            <option value="" disabled selected>Select District</option>
+            <option value="5">Colombo</option>
+            <option value="7">Gampaha</option>
+            <option value="11">Kalutara</option>
+            <option value="12">Kandy</option>
+            <option value="17">Matale</option>
+            <option value="21">Nuwara Eliya</option>
+            <option value="6">Galle</option>
+            <option value="18">Matara</option>
+            <option value="8">Hambantota</option>
+            <option value="9">Jaffna</option>
+            <option value="14">Kilinochchi</option>
+            <option value="16">Mannar</option>
+            <option value="25">Vavuniya</option>
+            <option value="20">Mullaitivu</option>
+            <option value="4">Batticaloa</option>
+            <option value="1">Ampara</option>
+            <option value="22">Polonnaruwa</option>
+            <option value="2">Anuradhapura</option>
+            <option value="15">Kurunegala</option>
+            <option value="23">Puttalam</option>
+            <option value="13">Kegalle</option>
+            <option value="24">Ratnapura</option>
+            <option value="3">Badulla</option>
+            <option value="19">Moneragala</option>
+            <option value="8">Hambanthota</option>
+        </select>
+        <button type="submit">Register Customer</button>
+    </form>
+</div>
+
+
     <div id="item-section" class="section-content" style="display: none;">
         <h2>Register Item</h2>
         <form id="itemForm">
