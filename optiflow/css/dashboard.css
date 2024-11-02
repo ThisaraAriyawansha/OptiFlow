@@ -162,3 +162,136 @@ button:hover {
         margin-left: 0;
     }
 }
+
+
+
+/* Report Section */
+#report-section {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px 0;
+}
+
+/* Headings */
+h2, h3 {
+    color: #333;
+    margin: 0 0 10px;
+}
+
+/* Report Div */
+.report {
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.report:hover {
+    background-color: #f0f0f0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Input Fields */
+input[type="date"] {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    width: calc(50% - 22px);
+    margin-right: 10px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+}
+
+input[type="date"]:focus {
+    border-color: #007aff; /* iOS Blue */
+    outline: none;
+}
+
+/* Button Styles */
+button {
+    background-color: #007aff; /* iOS Blue */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background-color: #005bb5; /* Darker blue */
+    transform: translateY(-1px);
+}
+
+button:focus {
+    outline: none;
+}
+
+/* Result Display */
+#invoice_report_result, #item_report_result, #item_report_output {
+    margin-top: 15px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+    input[type="date"] {
+        width: calc(100% - 22px);
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    button {
+        width: 100%;
+    }
+}
+
+
+.report-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.report-table th, .report-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.report-table th {
+    background-color: #f2f2f2;
+}
+
+.report-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.error {
+    color: red;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #dddddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}

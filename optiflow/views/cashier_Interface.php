@@ -22,6 +22,7 @@ $invoice_no = generateInvoiceNo($conn);
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cashier Purchase Form</title>
@@ -31,7 +32,9 @@ $invoice_no = generateInvoiceNo($conn);
 </head>
 <body>
     <div class="container">
+        <h2>Product Purchase Form</h2>
         <p id="welcome-message"></p>
+        <p class="instructions">Please fill out the form below to complete your purchase.</p>
 
         <script>
             const userName = localStorage.getItem('userName');
@@ -44,7 +47,6 @@ $invoice_no = generateInvoiceNo($conn);
             }
         </script>
 
-        <h2>Product Purchase Form</h2>
         <form action="../DBOperations/process_purchase.php" method="POST">
             <div class="form-group">
                 <label for="invoice_no">Invoice Number:</label>
@@ -115,6 +117,9 @@ $invoice_no = generateInvoiceNo($conn);
 
             <button type="submit">Process Purchase</button>
         </form>
+
+        <!-- Back Button -->
+        <a href="../index.php"><button class="back-button" onclick="window.history.back();">Back</button></a>
     </div>
 
     <script>

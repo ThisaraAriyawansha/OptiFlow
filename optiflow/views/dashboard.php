@@ -159,37 +159,71 @@
     </div>
 </div>
 
+
 <script>
-    function generateInvoiceReport() {
-        const startDate = document.getElementById('invoice_start_date').value;
-        const endDate = document.getElementById('invoice_end_date').value;
-        
-        fetch('../DBOperations/generate_report.php?type=invoice&start_date=' + startDate + '&end_date=' + endDate)
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('invoice_report_result').innerHTML = data;
-            });
+function generateInvoiceReport() {
+    const startDate = document.getElementById('invoice_start_date').value;
+    const endDate = document.getElementById('invoice_end_date').value;
+
+    fetch(`../DBOperations/generate_report.php?type=invoice&start_date=${startDate}&end_date=${endDate}`)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('invoice_report_result').innerHTML = formatReportData(data);
+        });
+}
+
+function generateInvoiceItemReport() {
+    const startDate = document.getElementById('item_report_start_date').value;
+    const endDate = document.getElementById('item_report_end_date').value;
+
+    fetch(`../DBOperations/generate_report.php?type=invoice_item&start_date=${startDate}&end_date=${endDate}`)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('item_report_result').innerHTML = formatReportData(data);
+        });
+}
+
+function generateItemReport() {
+    fetch('../DBOperations/generate_report.php?type=item')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('item_report_output').innerHTML = formatReportData(data);
+        });
+}
+
+function formatReportData(data) {
+    if (data.error) {
+        return `<p style="color: red;">${data.error}</p>`;
     }
 
-    function generateInvoiceItemReport() {
-        const startDate = document.getElementById('item_report_start_date').value;
-        const endDate = document.getElementById('item_report_end_date').value;
-
-        fetch('../DBOperations/generate_report.php?type=invoice_item&start_date=' + startDate + '&end_date=' + endDate)
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('item_report_result').innerHTML = data;
-            });
+    if (data.message) {
+        return `<p>${data.message}</p>`;
     }
 
-    function generateItemReport() {
-        fetch('../DBOperations/generate_report.php?type=item')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('item_report_output').innerHTML = data;
-            });
-    }
+    let html = '<table style="width: 100%; border-collapse: collapse;">';
+    html += '<tr>';
+
+    // Add table headers dynamically
+    Object.keys(data[0]).forEach(key => {
+        html += `<th style="border: 1px solid #dddddd; padding: 8px; text-align: left;">${key}</th>`;
+    });
+    html += '</tr>';
+
+    data.forEach(item => {
+        html += '<tr>';
+        Object.values(item).forEach(value => {
+            html += `<td style="border: 1px solid #dddddd; padding: 8px;">${value}</td>`;
+        });
+        html += '</tr>';
+    });
+    html += '</table>';
+
+    return html;
+}
+
 </script>
+
+
 </main>
 
         </div>
