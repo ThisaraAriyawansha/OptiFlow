@@ -1,5 +1,4 @@
 <?php
-// cashier_form.php
 session_start();
 include '../config/database.php'; 
 
@@ -26,82 +25,97 @@ $invoice_no = generateInvoiceNo($conn);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cashier Purchase Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
     <link rel="stylesheet" href="../css/cashier_Interface.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 </head>
 <body>
-    <p id="welcome-message"></p>
+    <div class="container">
+        <p id="welcome-message"></p>
 
-    <script>
-        const userName = localStorage.getItem('userName');
-        const welcomeMessage = document.getElementById('welcome-message');
-        welcomeMessage.innerText = userName ? `Hello, ${userName}!` : 'Hello, Guest!';
-    </script>
+        <script>
+            const userName = localStorage.getItem('userName');
+            const welcomeMessage = document.getElementById('welcome-message');
+            welcomeMessage.innerText = userName ? `Hello, ${userName}!` : 'Hello, Guest!';
 
-    <h2>Product Purchase Form</h2>
-    <form action="../DBOperations/process_purchase.php" method="POST">
-        <!-- Invoice Number -->
-        <label for="invoice_no">Invoice Number:</label>
-        <input type="text" id="invoice_no" name="invoice_no" readonly value="<?php echo $invoice_no; ?>"><br>
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('success')) {
+                swal("Success!", "Purchase processed successfully!", "success");
+            }
+        </script>
 
-        <!-- Customer Selection -->
-        <label for="customer">Select Customer:</label>
-        <select name="customer_id" id="customer" required>
-            <?php
-                // Fetch customers
-                $result = $conn->query("SELECT id, CONCAT(first_name, ' ', last_name) AS name FROM customer");
-                while ($row = $result->fetch_assoc()) {
-                    echo "<option value='{$row['id']}'>{$row['name']}</option>";
-                }
-            ?>
-        </select><br>
+        <h2>Product Purchase Form</h2>
+        <form action="../DBOperations/process_purchase.php" method="POST">
+            <div class="form-group">
+                <label for="invoice_no">Invoice Number:</label>
+                <input type="text" id="invoice_no" name="invoice_no" readonly value="<?php echo $invoice_no; ?>">
+            </div>
 
-        <!-- Item Category Selection -->
-        <label for="item_category">Select Item Category:</label>
-        <select name="item_category" id="item_category" required>
-            <?php
-                // Fetch item categories
-                $result = $conn->query("SELECT id, category FROM item_category");
-                while ($row = $result->fetch_assoc()) {
-                    echo "<option value='{$row['id']}'>{$row['category']}</option>";
-                }
-            ?>
-        </select><br>
+            <div class="form-group">
+                <label for="customer">Select Customer:</label>
+                <select name="customer_id" id="customer" required>
+                    <?php
+                        // Fetch customers
+                        $result = $conn->query("SELECT id, CONCAT(first_name, ' ', last_name) AS name FROM customer");
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<option value='{$row['id']}'>{$row['name']}</option>";
+                        }
+                    ?>
+                </select>
+            </div>
 
-        <!-- Item Subcategory Selection -->
-        <label for="item_subcategory">Select Item Subcategory:</label>
-        <select name="item_subcategory" id="item_subcategory" required>
-            <?php
-                // Fetch item subcategories
-                $result = $conn->query("SELECT id, sub_category FROM item_subcategory");
-                while ($row = $result->fetch_assoc()) {
-                    echo "<option value='{$row['id']}'>{$row['sub_category']}</option>";
-                }
-            ?>
-        </select><br>
+            <div class="form-group">
+                <label for="item_category">Select Item Category:</label>
+                <select name="item_category" id="item_category" required>
+                    <?php
+                        // Fetch item categories
+                        $result = $conn->query("SELECT id, category FROM item_category");
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<option value='{$row['id']}'>{$row['category']}</option>";
+                        }
+                    ?>
+                </select>
+            </div>
 
-        <!-- Product Selection -->
-        <label for="item">Select Product:</label>
-        <select name="item_id" id="item" required>
-            <?php
-                // Fetch items
-                $result = $conn->query("SELECT id, item_name, unit_price FROM item");
-                while ($row = $result->fetch_assoc()) {
-                    echo "<option value='{$row['id']}' data-price='{$row['unit_price']}'>{$row['item_name']} - {$row['unit_price']}</option>";
-                }
-            ?>
-        </select><br>
+            <div class="form-group">
+                <label for="item_subcategory">Select Item Subcategory:</label>
+                <select name="item_subcategory" id="item_subcategory" required>
+                    <?php
+                        // Fetch item subcategories
+                        $result = $conn->query("SELECT id, sub_category FROM item_subcategory");
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<option value='{$row['id']}'>{$row['sub_category']}</option>";
+                        }
+                    ?>
+                </select>
+            </div>
 
-        <!-- Quantity -->
-        <label for="quantity">Quantity:</label>
-        <input type="number" id="quantity" name="quantity" min="1" required><br>
+            <div class="form-group">
+                <label for="item">Select Product:</label>
+                <select name="item_id" id="item" required>
+                    <?php
+                        // Fetch items
+                        $result = $conn->query("SELECT id, item_name, unit_price FROM item");
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<option value='{$row['id']}' data-price='{$row['unit_price']}'>{$row['item_name']} - {$row['unit_price']}</option>";
+                        }
+                    ?>
+                </select>
+            </div>
 
-        <!-- Total Price -->
-        <label for="total_price">Total Price:</label>
-        <input type="text" id="total_price" name="total_price" readonly><br>
+            <div class="form-group">
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" name="quantity" min="1" required>
+            </div>
 
-        <!-- Submit Button -->
-        <button type="submit">Process Purchase</button>
-    </form>
+            <div class="form-group">
+                <label for="total_price">Total Price:</label>
+                <input type="text" id="total_price" name="total_price" readonly>
+            </div>
+
+            <button type="submit">Process Purchase</button>
+        </form>
+    </div>
 
     <script>
         document.getElementById("item").addEventListener("change", calculateTotal);
@@ -112,7 +126,6 @@ $invoice_no = generateInvoiceNo($conn);
             let price = item.options[item.selectedIndex].getAttribute("data-price");
             let quantity = document.getElementById("quantity").value;
             let total = price * quantity;
-            // Removed dollar sign from total price
             document.getElementById("total_price").value = total ? total.toFixed(2) : "";
         }
     </script>

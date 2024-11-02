@@ -34,7 +34,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $unit_price = $item['unit_price'];
 
         if ($stmt2->execute()) {
-            echo "Purchase processed successfully. Invoice No: $invoice_no";
+            header('Location: ../views/cashier_interface.php?success=true');
+            exit();
         } else {
             echo "Error processing invoice: " . $stmt2->error;
         }

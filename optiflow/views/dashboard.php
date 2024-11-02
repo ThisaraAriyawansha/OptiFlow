@@ -130,33 +130,66 @@
 </div>
 
 
-    <div id="report-section" class="section-content" style="display: none;">
-        <h2>Reports</h2>
+<div id="report-section" class="section-content" style="display: none;">
+    <h2>Reports</h2>
 
-        <!-- Invoice Report -->
-        <div class="report">
-            <h3>Invoice Report</h3>
-            <label>Date Range:</label>
-            <input type="date"> to <input type="date">
-            <button>Generate Report</button>
-            <!-- Display generated report here -->
-        </div>
-
-        <!-- Invoice Item Report -->
-        <div class="report">
-            <h3>Invoice Item Report</h3>
-            <label>Date Range:</label>
-            <input type="date"> to <input type="date">
-            <button>Generate Report</button>
-            <!-- Display generated report here -->
-        </div>
-
-        <!-- Item Report -->
-        <div class="report">
-            <h3>Item Report</h3>
-            <!-- Display items with no repetitions -->
-        </div>
+    <!-- Invoice Report -->
+    <div class="report">
+        <h3>Invoice Report</h3>
+        <label>Date Range:</label>
+        <input type="date" id="invoice_start_date"> to <input type="date" id="invoice_end_date">
+        <button onclick="generateInvoiceReport()">Generate Report</button>
+        <div id="invoice_report_result"></div>
     </div>
+
+    <!-- Invoice Item Report -->
+    <div class="report">
+        <h3>Invoice Item Report</h3>
+        <label>Date Range:</label>
+        <input type="date" id="item_report_start_date"> to <input type="date" id="item_report_end_date">
+        <button onclick="generateInvoiceItemReport()">Generate Report</button>
+        <div id="item_report_result"></div>
+    </div>
+
+    <!-- Item Report -->
+    <div class="report">
+        <h3>Item Report</h3>
+        <button onclick="generateItemReport()">Generate Report</button>
+        <div id="item_report_output"></div>
+    </div>
+</div>
+
+<script>
+    function generateInvoiceReport() {
+        const startDate = document.getElementById('invoice_start_date').value;
+        const endDate = document.getElementById('invoice_end_date').value;
+        
+        fetch('../DBOperations/generate_report.php?type=invoice&start_date=' + startDate + '&end_date=' + endDate)
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('invoice_report_result').innerHTML = data;
+            });
+    }
+
+    function generateInvoiceItemReport() {
+        const startDate = document.getElementById('item_report_start_date').value;
+        const endDate = document.getElementById('item_report_end_date').value;
+
+        fetch('../DBOperations/generate_report.php?type=invoice_item&start_date=' + startDate + '&end_date=' + endDate)
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('item_report_result').innerHTML = data;
+            });
+    }
+
+    function generateItemReport() {
+        fetch('../DBOperations/generate_report.php?type=item')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('item_report_output').innerHTML = data;
+            });
+    }
+</script>
 </main>
 
         </div>
