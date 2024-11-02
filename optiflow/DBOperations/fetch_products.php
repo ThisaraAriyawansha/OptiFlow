@@ -6,7 +6,6 @@ include '../config/database.php';
 if (isset($_GET['subcategory_id'])) {
     $subcategory_id = $_GET['subcategory_id'];
 
-    // Fetch products based on the selected subcategory
     $stmt = $conn->prepare("SELECT id, item_name, unit_price FROM item WHERE subcategory_id = ?");
     $stmt->bind_param("i", $subcategory_id);
     $stmt->execute();

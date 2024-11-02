@@ -1,14 +1,13 @@
 <?php
 include '../config/database.php';
 
-$type = $_GET['type'] ?? null; // Use null coalescing operator for safety
+$type = $_GET['type'] ?? null; 
 
 if (!$type) {
     echo json_encode(['error' => 'Report type is required.']);
     exit;
 }
 
-// Prepare the SQL statement
 switch ($type) {
     case 'invoice':
         $start_date = $_GET['start_date'] ?? null;
@@ -48,26 +47,24 @@ switch ($type) {
         exit;
 }
 
-// Execute the statement
 if ($stmt) {
     $stmt->execute();
     $result = $stmt->get_result();
 
-    // Check if there are results
     if ($result->num_rows > 0) {
         $output = [];
         while ($row = $result->fetch_assoc()) {
-            $output[] = $row; // Add each row to output array
+            $output[] = $row; 
         }
-        echo json_encode($output); // Output in JSON format
+        echo json_encode($output); 
     } else {
         echo json_encode(['message' => 'No results found.']);
     }
 
-    $stmt->close(); // Close the prepared statement
+    $stmt->close(); 
 } else {
     echo json_encode(['error' => 'Failed to prepare the SQL statement.']);
 }
 
-$conn->close(); // Close the database connection
+$conn->close(); 
 ?>

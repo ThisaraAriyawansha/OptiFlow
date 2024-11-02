@@ -22,7 +22,7 @@
             </div>
             <div class="login-form">
                 <h2>Login</h2>
-                <div id="error-message" class="alert-box" style="display: none;"></div> <!-- Only one error message container -->
+                <div id="error-message" class="alert-box" style="display: none;"></div> 
                 <form id="login-form" onsubmit="handleSubmit(event)">
                     <div class="form-group">
                         <label for="username">Username</label>

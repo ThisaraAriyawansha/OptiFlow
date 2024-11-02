@@ -1,14 +1,11 @@
-// Customer form submission
 document.getElementById("customerForm").onsubmit = function(event) {
-    event.preventDefault(); // Prevent default form submission
+    event.preventDefault(); 
 
-    // Validate the form first
     if (!validateCustomerForm()) {
-        return; // Stop if validation fails
+        return; 
     }
 
-    // If validation is successful, proceed with AJAX form submission
-    let formData = new FormData(this); // Get form data
+    let formData = new FormData(this); 
 
     fetch(this.action, {
         method: this.method,
@@ -28,16 +25,13 @@ document.getElementById("customerForm").onsubmit = function(event) {
     });
 };
 
-// Item form submission
 document.getElementById("itemForm").onsubmit = function(event) {
-    event.preventDefault(); // Prevent default form submission
+    event.preventDefault(); 
 
-    // Validate the item form
     if (!validateItemForm()) {
-        return; // Stop if validation fails
+        return; 
     }
 
-    // Proceed with AJAX form submission
     let formData = new FormData(this);
 
     fetch(this.action, {
@@ -58,7 +52,6 @@ document.getElementById("itemForm").onsubmit = function(event) {
     });
 };
 
-// Customer form validation
 function validateCustomerForm() {
     let title = document.getElementById("title").value;
     let firstName = document.getElementById("firstName").value.trim();
@@ -85,7 +78,6 @@ function validateCustomerForm() {
     return true;
 }
 
-// Item form validation
 function validateItemForm() {
     let itemCode = document.querySelector("#itemForm [name='item_code']").value.trim();
     let itemName = document.querySelector("#itemForm [name='item_name']").value.trim();
