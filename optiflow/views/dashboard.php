@@ -4,10 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OptiFlow ERP Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="../js/welcome_message.js"></script>
+    <script src="../js/validation.js" defer></script>
+
 </head>
 <body>
 
@@ -22,7 +26,7 @@
     <ul>
         <li><a href="#" id="dashboard-link" onclick="showSection('dashboard-section')"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
         <li><a href="#" id="customer-link" onclick="showSection('customer-section')"><i class="fas fa-user"></i> Customers Registration</a></li>
-        <li><a href="#" id="item-link" onclick="showSection('item-section')"><i class="fas fa-box"></i> Items</a></li>
+        <li><a href="#" id="item-link" onclick="showSection('item-section')"><i class="fas fa-box"></i> Items Registration</a></li>
         <li><a href="#" id="report-link" onclick="showSection('report-section')"><i class="fas fa-file-alt"></i> Reports</a></li>
     </ul>
 </aside>
@@ -35,22 +39,26 @@
 
     <div id="customer-section" class="section-content" style="display: none;">
     <h2>Register Customer</h2>
-    <form id="customerForm" method="post" action="">
-        <label>Title:</label>
-        <select id="title" required>
-            <option>Mr</option>
-            <option>Mrs</option>
-            <option>Miss</option>
-            <option>Dr</option>
+    <form id="customerForm" method="post" action="../DBOperations/register_customer.php">
+        <label for="title">Title:</label>
+        <select id="title" name="title" required>
+            <option value="Mr">Mr</option>
+            <option value="Mrs">Mrs</option>
+            <option value="Miss">Miss</option>
+            <option value="Dr">Dr</option>
         </select>
-        <label>First Name:</label>
-        <input type="text" id="firstName" required>
-        <label>Last Name:</label>
-        <input type="text" id="lastName" required>
-        <label>Contact Number:</label>
-        <input type="tel" id="contactNumber" pattern="[0-9]{10}" required>
-        <label>District:</label>
-        <select id="district" required>
+        
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="first_name" required>
+        
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="last_name" required>
+        
+        <label for="contactNumber">Contact Number:</label>
+        <input type="tel" id="contactNumber" name="contact_number" pattern="[0-9]{10}" required placeholder="Enter 10-digit number">
+        
+        <label for="district">District:</label>
+        <select id="district" name="district" required>
             <option value="" disabled selected>Select District</option>
             <option value="5">Colombo</option>
             <option value="7">Gampaha</option>
@@ -76,43 +84,52 @@
             <option value="24">Ratnapura</option>
             <option value="3">Badulla</option>
             <option value="19">Moneragala</option>
-            <option value="8">Hambanthota</option>
         </select>
         <button type="submit">Register Customer</button>
     </form>
 </div>
 
 
-    <div id="item-section" class="section-content" style="display: none;">
-        <h2>Register Item</h2>
-        <form id="itemForm">
-            <label>Item Code:</label>
-            <input type="text" required>
-            <label>Item Name:</label>
-            <input type="text" required>
-            <label>Item Category:</label>
-            <select required>
-                <option>Electronics</option>
-                <option>Furniture</option>
-                <!-- Add other categories -->
-            </select>
-            <label>Item Sub-Category:</label>
-            <select required>
-                <option>Mobile</option>
-                <option>Table</option>
-                <!-- Add other sub-categories -->
-            </select>
-            <label>Quantity:</label>
-            <input type="number" required>
-            <label>Unit Price:</label>
-            <input type="number" required>
-            <button type="submit">Register Item</button>
-        </form>
-        <div id="itemList">
-            <h3>Item List</h3>
-            <!-- Table for viewing registered items -->
-        </div>
-    </div>
+<div id="item-section" class="section-content" style="display: none;">
+    <h2>Register Item</h2>
+    <form id="itemForm" method="post" action="../DBOperations/register_item.php">
+        <label>Item Code:</label>
+        <input type="text" name="item_code" required>
+        
+        <label>Item Name:</label>
+        <input type="text" name="item_name" required>
+        
+        <label>Item Category:</label>
+        <select name="category" required>
+            <option value="" disabled selected>Select Item Category</option>
+            <option value="1">Printers</option>
+            <option value="2">Laptops</option>
+            <option value="3">Gadgets</option>
+            <option value="4">Ink Bottles</option>
+            <option value="5">Cartridges</option>
+        </select>
+
+        <label>Item Sub-Category:</label>
+        <select name="sub_category" required>
+            <option value="" disabled selected>Select Item Sub-Category</option>
+            <option value="1">HP</option>
+            <option value="2">Dell</option>
+            <option value="3">Lenovo</option>
+            <option value="4">Acer</option>
+            <option value="5">Samsung</option>
+        </select>
+
+        <label>Quantity:</label>
+        <input type="number" name="quantity" required>
+        
+        <label>Unit Price:</label>
+        <input type="number" name="unit_price" required>
+
+        <button type="submit">Register Item</button>
+    </form>
+</div>
+
+
     <div id="report-section" class="section-content" style="display: none;">
         <h2>Reports</h2>
 

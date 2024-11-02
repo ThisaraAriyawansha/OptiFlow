@@ -8,8 +8,11 @@
 
 /* General Layout */
 body {
+    margin: 0; /* Remove default margin */
+    padding-top: 55px; /* Adjust based on header height to avoid overlap */
     background-color: #f5f5f5;
     color: #333;
+
 }
 
 .dashboard-container {
@@ -22,9 +25,13 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #003366;
-    color: #fff;
-    padding: 1rem 2rem;
+    background-color: #003366; /* Dark blue background */
+    color: #fff; /* White text color */
+    padding: 1rem 2rem; /* Padding around the header */
+    position: fixed; /* Fixes the header at the top */
+    top: 0; /* Positions the header at the top */
+    width: 100%; /* Ensures the header spans the full width */
+    z-index: 1000; /* Ensures it stays above other content */
 }
 
 .dashboard-header h1 {
